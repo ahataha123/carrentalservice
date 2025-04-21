@@ -1,4 +1,4 @@
-**🚗 Car Rental Service**********
+🚗 Car Rental Service
 
 A simple RESTful Car Rental Service built with Spring Boot, offering the following core features:
 
