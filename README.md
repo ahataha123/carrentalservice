@@ -25,16 +25,26 @@ The app uses an in-memory H2 database. All data will be lost on server restart. 
 1. 👤 Register a User
 **POST** http://localhost:8080/users/register
 Body (JSON):
-
 {
   "name": "John",
   "email": "john@example.com",
   "password": "password123"
 }
-2. 🚘 Add a Car
+2. 🔓 Login
+POST http://localhost:8080/auth/login
+Request Body:
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+Response Example:
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR..."
+}
+Add the token to Postman for testing purposes
+3. 🚘 Add a Car
 **POST** http://localhost:8080/cars
 Body (JSON):
-
 {
   "brand": "Toyota",
   "model": "Corolla",
@@ -43,18 +53,17 @@ Body (JSON):
   "pricePerDayUsd": 45.0,
   "available": true
 }
-3. 📃 List All Cars
+4. 📃 List All Cars
 **GET** http://localhost:8080/cars
 🔹 Returns all cars (available and booked).
 
-4. ✅ List Available Cars
+5. ✅ List Available Cars
 **GET** http://localhost:8080/cars/available
 🔹 Returns only cars that are currently available.
 
-5. 📅 Book a Car
+6. 📅 Book a Car
 **POST** http://localhost:8080/bookings/book
 Body (JSON):
-
 {
   "userId": 1,
   "carId": 1,
@@ -62,8 +71,6 @@ Body (JSON):
   "endDate": "2025-04-24"
 }
 Sample Response:
-
-
 {
   "bookingId": 1,
   "userName": "john@example.com",
@@ -75,11 +82,21 @@ Sample Response:
   "totalCostUsd": 90.0
 }
 
-6. 🔁 Return a Car
+7. 🔁 Return a Car
 **PUT** http://localhost:8080/bookings/1/return
 ✅ Response:
-
 "Car returned successfully."
+
+8. 📏 Get Distance Between Two Locations (Web Service 3)
+GET http://localhost:8080/distance?origin=Vienna&destination=Graz
+Headers: Authorization: Bearer <your_token>
+
+Response Example:
+{
+    "distanceText": "197 km",
+    "durationText": "2 hours 15 mins"
+}
+
 🛠 Tech Stack
 ☕ Java 17+
 
