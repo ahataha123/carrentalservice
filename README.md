@@ -87,6 +87,15 @@ Sample Response:
 ✅ Response:
 "Car returned successfully."
 
+**Google Maps Setup**
+This project integrates the Google Maps Distance Matrix API to calculate distances between two locations.
+
+To enable this feature, you need to add your API key in a local application.properties file:
+
+**google.maps.api.key=YOUR_GOOGLE_MAPS_API_KEY**
+
+📝 The application.properties file is not committed to version control for security reasons.
+
 8. 📏 Get Distance Between Two Locations (Web Service 3)
 GET http://localhost:8080/distance?origin=Vienna&destination=Graz
 Headers: Authorization: Bearer <your_token>
