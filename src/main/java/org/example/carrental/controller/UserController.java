@@ -24,6 +24,11 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @GetMapping()
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
     @PostMapping
     public User register(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -31,12 +36,12 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/bookings")
-    public Optional<List<Booking>> getBookings(@PathVariable Long userId) {
+    public Optional<List<Booking>> getBookingsForUser(@PathVariable Long userId) {
         return bookingService.findByUserIdAndActive(userId, true);
     }
 
     @GetMapping("/{userId}/history")
-    public Optional<List<Booking>> getBookingsHistory(@PathVariable Long userId) {
+    public Optional<List<Booking>> getBookingsHistoryForUser(@PathVariable Long userId) {
         return bookingService.findByUserIdAndActive(userId, false);
     }
 }

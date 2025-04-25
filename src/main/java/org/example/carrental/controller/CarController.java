@@ -15,6 +15,11 @@ public class CarController {
     @Autowired
     private CarService carService;
 
+    @GetMapping
+    public List<Car> getAllCars() {
+        return carService.getAllCars();
+    }
+
     @GetMapping("/available")
     public List<Car> getAvailableCars() {
         return carService.getAvailableCars();
@@ -25,10 +30,5 @@ public class CarController {
         car.setAvailable(true);
         Car savedCar = carService.addCar(car);
         return ResponseEntity.ok(savedCar);
-    }
-
-    @GetMapping
-    public List<Car> getAllCars() {
-        return carService.getAllCars();
     }
 }

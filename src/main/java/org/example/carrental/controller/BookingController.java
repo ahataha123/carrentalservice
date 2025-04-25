@@ -27,6 +27,11 @@ public class BookingController {
     @Autowired
     private CarService carService;
 
+    @GetMapping
+    public List<Booking> getAllBookings() {
+        return bookingService.getAllBookings();
+    }
+
     @PostMapping
     public BookingResponse bookCar(@RequestBody BookingRequest request) {
         Optional<User> user = userService.findById(request.getUserId());
@@ -73,10 +78,5 @@ public class BookingController {
         //bookingService.deleteById(bookingId);
 
         return "Car returned successfully.";
-    }
-
-    @GetMapping
-    public List<Booking> getAllBookings() {
-        return bookingService.getAllBookings();
     }
 }
