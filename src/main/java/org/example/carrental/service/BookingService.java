@@ -24,7 +24,7 @@ public class BookingService {
     public Booking bookCar(User user, Car car,
                            java.time.LocalDate startDate, java.time.LocalDate endDate) {
 
-        long days = ChronoUnit.DAYS.between(startDate, endDate);
+        long days = ChronoUnit.DAYS.between(startDate, endDate); //Todo mb add + 1
         double totalCost = car.getPricePerDayUsd() * days;
 
         Booking booking = new Booking(user, car, startDate, endDate, totalCost);
