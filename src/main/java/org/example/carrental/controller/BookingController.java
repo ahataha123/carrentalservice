@@ -27,7 +27,7 @@ public class BookingController {
     @Autowired
     private CarService carService;
 
-    @PostMapping("/book")
+    @PostMapping
     public BookingResponse bookCar(@RequestBody BookingRequest request) {
         Optional<User> user = userService.findById(request.getUserId());
         Optional<Car> car = carService.findById(request.getCarId());

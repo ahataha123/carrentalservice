@@ -23,7 +23,7 @@ Your Spring Boot app should be running locally at by default:
 The app uses an in-memory H2 database. All data will be lost on server restart. Please re-register users and cars before testing.
 🧪 **How to Test in Postman**
 1. 👤 Register a User
-**POST** http://localhost:8080/v1/users/register
+**POST** http://localhost:8080/v1/users
 Body (JSON):
 {
   "username": "John",
@@ -62,7 +62,7 @@ Body (JSON):
 🔹 Returns only cars that are currently available.
 
 6. 📅 Book a Car
-**POST** http://localhost:8080/v1/bookings/book
+**POST** http://localhost:8080/v1/bookings
 Body (JSON):
 {
   "userId": 1,
@@ -83,7 +83,7 @@ Sample Response:
 }
 
 7. 🔁 Return a Car
-**PUT** http://localhost:8080/v1/bookings/1/return
+**PATCH** http://localhost:8080/v1/bookings/1/return
 ✅ Response:
 "Car returned successfully."
 
