@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cars")
+@RequestMapping("/v1/cars")
 public class CarController {
 
     @Autowired
@@ -19,12 +19,14 @@ public class CarController {
     public List<Car> getAvailableCars() {
         return carService.getAvailableCars();
     }
+
     @PostMapping
     public ResponseEntity<Car> addCar(@RequestBody Car car) {
         car.setAvailable(true);
         Car savedCar = carService.addCar(car);
         return ResponseEntity.ok(savedCar);
     }
+
     @GetMapping
     public List<Car> getAllCars() {
         return carService.getAllCars();

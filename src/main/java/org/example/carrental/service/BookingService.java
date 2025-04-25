@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,4 +36,15 @@ public class BookingService {
         return bookingRepository.findById(id);
     }
 
+    public List<Booking> getAllBookings() {
+        return bookingRepository.findAll();
+    }
+
+    public Optional<List<Booking>> findByUserId(Long userId) {
+        return  bookingRepository.findByUserId(userId);
+    }
+
+    public void deleteById(Long id) {
+        bookingRepository.deleteById(id);
+    }
 }

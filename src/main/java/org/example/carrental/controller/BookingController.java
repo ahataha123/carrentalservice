@@ -10,10 +10,12 @@ import org.example.carrental.service.CarService;
 import org.example.carrental.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/bookings")
+@RequestMapping("/v1/bookings")
 public class BookingController {
 
     @Autowired
@@ -49,8 +51,7 @@ public class BookingController {
 
     }
 
-
-    @PutMapping("/{bookingId}/return")
+    @PatchMapping("/{bookingId}/return")
     public String returnCar(@PathVariable Long bookingId) {
         Optional<Booking> bookingOpt = bookingService.findById(bookingId);
 
@@ -67,8 +68,18 @@ public class BookingController {
 
         car.setAvailable(true);
         carService.save(car);
+        bookingService.deleteById(bookingId);
 
         return "Car returned successfully.";
     }
 
+    @GetMapping
+    public List<Booking> getAllBookings() {
+        return bookingService.getAllBookings();
+    }
+
+    @GetMapping("/{userId}") //TODO delete should be in user controller
+    public Optional<List<Booking>> getBookings(@PathVariable Long userId) {
+        return bookingService.findByUserId(userId);
+    }
 }

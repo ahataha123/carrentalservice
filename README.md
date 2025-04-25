@@ -23,15 +23,15 @@ Your Spring Boot app should be running locally at by default:
 The app uses an in-memory H2 database. All data will be lost on server restart. Please re-register users and cars before testing.
 🧪 **How to Test in Postman**
 1. 👤 Register a User
-**POST** http://localhost:8080/users/register
+**POST** http://localhost:8080/v1/users/register
 Body (JSON):
 {
-  "name": "John",
+  "username": "John",
   "email": "john@example.com",
   "password": "password123"
 }
 2. 🔓 Login
-POST http://localhost:8080/auth/login
+POST http://localhost:8080/v1/auth/login
 Request Body:
 {
   "email": "john@example.com",
@@ -43,7 +43,7 @@ Response Example:
 }
 Add the token to Postman for testing purposes
 3. 🚘 Add a Car
-**POST** http://localhost:8080/cars
+**POST** http://localhost:8080/v1/cars
 Body (JSON):
 {
   "brand": "Toyota",
@@ -54,15 +54,15 @@ Body (JSON):
   "available": true
 }
 4. 📃 List All Cars
-**GET** http://localhost:8080/cars
+**GET** http://localhost:8080/v1/cars
 🔹 Returns all cars (available and booked).
 
 5. ✅ List Available Cars
-**GET** http://localhost:8080/cars/available
+**GET** http://localhost:8080/v1/cars/available
 🔹 Returns only cars that are currently available.
 
 6. 📅 Book a Car
-**POST** http://localhost:8080/bookings/book
+**POST** http://localhost:8080/v1/bookings/book
 Body (JSON):
 {
   "userId": 1,
@@ -83,7 +83,7 @@ Sample Response:
 }
 
 7. 🔁 Return a Car
-**PUT** http://localhost:8080/bookings/1/return
+**PUT** http://localhost:8080/v1/bookings/1/return
 ✅ Response:
 "Car returned successfully."
 
@@ -97,7 +97,7 @@ To enable this feature, you need to add your API key in a local application.prop
 📝 The application.properties file is not committed to version control for security reasons.
 
 8. 📏 Get Distance Between Two Locations (Web Service 3)
-GET http://localhost:8080/distance?origin=Vienna&destination=Graz
+GET http://localhost:8080/v1/distance?origin=Vienna&destination=Graz
 Headers: Authorization: Bearer <your_token>
 
 Response Example:

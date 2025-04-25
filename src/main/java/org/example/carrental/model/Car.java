@@ -60,10 +60,10 @@ public class Car {
         this.model = model;
     }
 
-    public int getmanufactureYear() {
+    public int getManufactureYear() {
         return manufactureYear;
     }
-    public void setmanufactureYear(int manufactureYear) {
+    public void setManufactureYear(int manufactureYear) {
         this.manufactureYear = manufactureYear;
     }
 

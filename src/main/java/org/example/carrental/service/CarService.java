@@ -25,11 +25,11 @@ public class CarService {
     public Car save(Car car) {
         return carRepository.save(car);
     }
+
     public Car addCar(Car car) {
         return carRepository.save(car);
     }
     public List<Car> getAllCars() {
         return carRepository.findAll();
     }
-
 }
