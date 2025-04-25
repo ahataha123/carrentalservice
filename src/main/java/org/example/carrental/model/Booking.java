@@ -2,6 +2,7 @@ package org.example.carrental.model;
 
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
 
@@ -29,6 +30,10 @@ public class Booking {
 
     @Column(nullable = false)
     private double totalCostUsd;
+
+    @ColumnDefault("true")
+    @Column(nullable = false)
+    private boolean active;
 
     public Booking() {
     }
@@ -83,5 +88,13 @@ public class Booking {
 
     public void setTotalCostUsd(double totalCostUsd) {
         this.totalCostUsd = totalCostUsd;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

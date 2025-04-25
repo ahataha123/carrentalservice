@@ -68,7 +68,7 @@ public class BookingController {
 
         car.setAvailable(true);
         carService.save(car);
-        bookingService.deleteById(bookingId);
+        //bookingService.deleteById(bookingId);
 
         return "Car returned successfully.";
     }
@@ -78,8 +78,15 @@ public class BookingController {
         return bookingService.getAllBookings();
     }
 
-    @GetMapping("/{userId}") //TODO delete should be in user controller
+    @GetMapping("/{userId}/active") //TODO delete should be in user controller
     public Optional<List<Booking>> getBookings(@PathVariable Long userId) {
-        return bookingService.findByUserId(userId);
+        //return bookingService.findByUserId(userId);
+        return bookingService.findByUserIdAndActive(userId, true);
+    }
+
+    @GetMapping("/{userId}/history") //TODO delete should be in user controller
+    public Optional<List<Booking>> getBookingsHistory(@PathVariable Long userId) {
+        //return bookingService.findByUserId(userId);
+        return bookingService.findByUserIdAndActive(userId, false);
     }
 }

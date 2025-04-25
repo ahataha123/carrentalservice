@@ -45,6 +45,10 @@ public class BookingService {
         return bookingRepository.findByUserId(userId);
     }
 
+    public Optional<List<Booking>> findByUserIdAndActive(Long userId, boolean active) {
+        return bookingRepository.findByUserIdAndActive(userId, active);
+    }
+
     public void deleteById(Long id) {
         bookingRepository.deleteById(id);
     }
