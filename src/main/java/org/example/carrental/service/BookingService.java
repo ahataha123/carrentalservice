@@ -32,6 +32,7 @@ public class BookingService {
         carRepository.save(car);
         return bookingRepository.save(booking);
     }
+
     public Optional<Booking> findById(Long id) {
         return bookingRepository.findById(id);
     }
@@ -41,7 +42,7 @@ public class BookingService {
     }
 
     public Optional<List<Booking>> findByUserId(Long userId) {
-        return  bookingRepository.findByUserId(userId);
+        return bookingRepository.findByUserId(userId);
     }
 
     public void deleteById(Long id) {

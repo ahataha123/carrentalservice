@@ -2,6 +2,7 @@ package org.example.carrental.model;
 
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -29,7 +30,8 @@ public class Booking {
     @Column(nullable = false)
     private double totalCostUsd;
 
-    public Booking() {}
+    public Booking() {
+    }
 
     public Booking(User user, Car car, LocalDate startDate, LocalDate endDate, double totalCostUsd) {
         this.user = user;
@@ -46,6 +48,7 @@ public class Booking {
     public User getUser() {
         return user;
     }
+
     public void setUser(User user) {
         this.user = user;
     }
@@ -53,6 +56,7 @@ public class Booking {
     public Car getCar() {
         return car;
     }
+
     public void setCar(Car car) {
         this.car = car;
     }
@@ -60,6 +64,7 @@ public class Booking {
     public LocalDate getStartDate() {
         return startDate;
     }
+
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
@@ -67,6 +72,7 @@ public class Booking {
     public LocalDate getEndDate() {
         return endDate;
     }
+
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
@@ -74,6 +80,7 @@ public class Booking {
     public double getTotalCostUsd() {
         return totalCostUsd;
     }
+
     public void setTotalCostUsd(double totalCostUsd) {
         this.totalCostUsd = totalCostUsd;
     }

@@ -1,7 +1,6 @@
 package org.example.carrental.model;
 
 
-
 import jakarta.persistence.*;
 
 
@@ -31,7 +30,8 @@ public class Car {
     @Column(nullable = false)
     private boolean available = true;
 
-    public Car() {}
+    public Car() {
+    }
 
     public Car(String brand, String model, int manufactureYear, String licensePlate, double pricePerDayUsd, boolean available) {
         this.brand = brand;
@@ -49,6 +49,7 @@ public class Car {
     public String getBrand() {
         return brand;
     }
+
     public void setBrand(String brand) {
         this.brand = brand;
     }
@@ -56,6 +57,7 @@ public class Car {
     public String getModel() {
         return model;
     }
+
     public void setModel(String model) {
         this.model = model;
     }
@@ -63,6 +65,7 @@ public class Car {
     public int getManufactureYear() {
         return manufactureYear;
     }
+
     public void setManufactureYear(int manufactureYear) {
         this.manufactureYear = manufactureYear;
     }
@@ -70,6 +73,7 @@ public class Car {
     public String getLicensePlate() {
         return licensePlate;
     }
+
     public void setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
     }
@@ -77,6 +81,7 @@ public class Car {
     public double getPricePerDayUsd() {
         return pricePerDayUsd;
     }
+
     public void setPricePerDayUsd(double pricePerDayUsd) {
         this.pricePerDayUsd = pricePerDayUsd;
     }
@@ -84,6 +89,7 @@ public class Car {
     public boolean isAvailable() {
         return available;
     }
+
     public void setAvailable(boolean available) {
         this.available = available;
     }
