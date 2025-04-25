@@ -32,6 +32,11 @@ public class UserController {
 
     @GetMapping("/{userId}/bookings")
     public Optional<List<Booking>> getBookings(@PathVariable Long userId) {
-        return bookingService.findByUserId(userId);
+        return bookingService.findByUserIdAndActive(userId, true);
+    }
+
+    @GetMapping("/{userId}/history")
+    public Optional<List<Booking>> getBookingsHistory(@PathVariable Long userId) {
+        return bookingService.findByUserIdAndActive(userId, false);
     }
 }

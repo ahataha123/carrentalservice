@@ -28,6 +28,7 @@ public class BookingService {
         double totalCost = car.getPricePerDayUsd() * days;
 
         Booking booking = new Booking(user, car, startDate, endDate, totalCost);
+        booking.setActive(true);
         car.setAvailable(false);
         carRepository.save(car);
         return bookingRepository.save(booking);
@@ -51,5 +52,9 @@ public class BookingService {
 
     public void deleteById(Long id) {
         bookingRepository.deleteById(id);
+    }
+
+    public Booking save(Booking booking) {
+        return bookingRepository.save(booking);
     }
 }
