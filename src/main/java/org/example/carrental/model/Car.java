@@ -1,96 +1,46 @@
 package org.example.carrental.model;
 
-
 import jakarta.persistence.*;
 
-
 @Entity
-@Table(name = "cars")
 public class Car {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private Long id;
 
-    @Column(nullable = false)
+    // rename “make” → “brand”
     private String brand;
 
-    @Column(nullable = false)
     private String model;
 
-    @Column(name = "manufacture_year", nullable = false)
-    private int manufactureYear;
-
-    @Column(nullable = false, unique = true)
+    // new field for the plate number
     private String licensePlate;
 
-    @Column(nullable = false)
-    private double pricePerDayUsd;
+    // now always stored in USD
+    private double price;
+    private String currency;
 
-    @Column(nullable = false)
-    private boolean available = true;
+    private boolean available;
 
-    public Car() {
-    }
+    // — getters/setters —
 
-    public Car(String brand, String model, int manufactureYear, String licensePlate, double pricePerDayUsd, boolean available) {
-        this.brand = brand;
-        this.model = model;
-        this.manufactureYear = manufactureYear;
-        this.licensePlate = licensePlate;
-        this.pricePerDayUsd = pricePerDayUsd;
-        this.available = available;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Long getId() {
-        return id;
-    }
+    public String getBrand() { return brand; }
+    public void setBrand(String brand) { this.brand = brand; }
 
-    public String getBrand() {
-        return brand;
-    }
+    public String getModel() { return model; }
+    public void setModel(String model) { this.model = model; }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
+    public String getLicensePlate() { return licensePlate; }
+    public void setLicensePlate(String licensePlate) { this.licensePlate = licensePlate; }
 
-    public String getModel() {
-        return model;
-    }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
+    public String getCurrency() { return currency; }
+    public void setCurrency(String currency) { this.currency = currency; }
 
-    public int getManufactureYear() {
-        return manufactureYear;
-    }
-
-    public void setManufactureYear(int manufactureYear) {
-        this.manufactureYear = manufactureYear;
-    }
-
-    public String getLicensePlate() {
-        return licensePlate;
-    }
-
-    public void setLicensePlate(String licensePlate) {
-        this.licensePlate = licensePlate;
-    }
-
-    public double getPricePerDayUsd() {
-        return pricePerDayUsd;
-    }
-
-    public void setPricePerDayUsd(double pricePerDayUsd) {
-        this.pricePerDayUsd = pricePerDayUsd;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
+    public boolean isAvailable() { return available; }
+    public void setAvailable(boolean available) { this.available = available; }
 }

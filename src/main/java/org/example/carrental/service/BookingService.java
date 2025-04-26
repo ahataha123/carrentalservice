@@ -31,7 +31,7 @@ public class BookingService {
         long days = ChronoUnit.DAYS.between(startDate, endDate); // Adding days logic
 
         // Calculate the total cost in USD
-        double totalCost = car.getPricePerDayUsd() * days;
+        double totalCost = car.getPrice() * days;
 
         // Fetch the exchange rate from USD to EUR
         Double exchangeRate = currencyConversionService.getExchangeRate("USD", "EUR", totalCost);
