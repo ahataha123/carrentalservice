@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
@@ -60,7 +60,7 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- JSON parsing (org.json) -->
+        <!-- JSON parsing -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
@@ -80,13 +80,14 @@
             <artifactId>spring-security-crypto</artifactId>
         </dependency>
 
+        <!-- MySQL -->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <version>8.3.0</version>
         </dependency>
 
-        <!-- Optional: Lombok for less boilerplate (if used) -->
+        <!-- Optional: Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -94,19 +95,85 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Testing (optional) -->
+        <!-- Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- JAX-WS & JAXB & JWS APIs -->
+        <dependency>
+            <groupId>jakarta.xml.ws</groupId>
+            <artifactId>jakarta.xml.ws-api</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.jws</groupId>
+            <artifactId>jakarta.jws-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+        <!-- JAX-WS Reference Impl at runtime -->
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>4.0.3</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- 1) Spring Boot Maven Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- 2) JAX-WS wsimport plugin for generating stubs -->
+            <plugin>
+                <groupId>com.sun.xml.ws</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>4.0.3</version>
+                <executions>
+                    <execution>
+                        <id>generate-wsdl-stubs</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <!-- your friend’s live WSDL endpoint -->
+                            <wsdlUrls>
+                                <wsdlUrl>http://localhost:57126/CurrencyConverterService.svc?wsdl</wsdlUrl>
+                            </wsdlUrls>
+                            <!-- package for generated types -->
+                            <packageName>com.example.currencyconverter</packageName>
+                            <!-- output folder for .java stubs -->
+                            <sourceDestDir>${project.build.directory}/generated-sources/jaxws</sourceDestDir>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <!-- ensure plugin has access to JAX-WS API and RI -->
+                    <dependency>
+                        <groupId>jakarta.xml.ws</groupId>
+                        <artifactId>jakarta.xml.ws-api</artifactId>
+                        <version>4.0.2</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.xml.ws</groupId>
+                        <artifactId>jaxws-rt</artifactId>
+                        <version>4.0.3</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

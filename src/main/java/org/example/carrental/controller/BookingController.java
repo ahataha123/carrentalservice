@@ -46,7 +46,7 @@ public class BookingController {
         return new BookingResponse(
                 booking.getId(),
                 user.get().getEmail(),                      // userName
-                booking.getCar().getModel(),               // carModel ← this was missing!
+                booking.getCar().getModel(),               // carModel
                 booking.getCar().getBrand(),               // carBrand
                 booking.getCar().getLicensePlate(),
                 booking.getStartDate(),

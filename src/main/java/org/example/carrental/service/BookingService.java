@@ -21,16 +21,37 @@ public class BookingService {
     @Autowired
     private CarRepository carRepository;
 
+    @Autowired
+    private CurrencyConversionService currencyConversionService;  // Inject the CurrencyConversionService
+
     public Booking bookCar(User user, Car car,
                            java.time.LocalDate startDate, java.time.LocalDate endDate) {
 
-        long days = ChronoUnit.DAYS.between(startDate, endDate); //Todo mb add + 1
+        // Calculate the total number of days for the booking
+        long days = ChronoUnit.DAYS.between(startDate, endDate); // Adding days logic
+
+        // Calculate the total cost in USD
         double totalCost = car.getPricePerDayUsd() * days;
 
-        Booking booking = new Booking(user, car, startDate, endDate, totalCost);
-        booking.setActive(true);
+        // Fetch the exchange rate from USD to EUR
+        Double exchangeRate = currencyConversionService.getExchangeRate("USD", "EUR", totalCost);
+
+        // If no exchange rate found, use USD cost (you can modify this logic if needed)
+        if (exchangeRate == null) {
+            exchangeRate = totalCost; // Fall back to USD cost if no conversion is available
+        }
+
+        // Create a new Booking instance with converted total cost (in EUR)
+        Booking booking = new Booking(user, car, startDate, endDate, exchangeRate);
+
+        // Mark the car as unavailable
         car.setAvailable(false);
         carRepository.save(car);
+
+        // Mark booking as active
+        booking.setActive(true);
+
+        // Save the booking
         return bookingRepository.save(booking);
     }
 
