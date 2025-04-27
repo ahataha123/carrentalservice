@@ -57,18 +57,18 @@ public class BookingController {
     }
 
     @PatchMapping("/{bookingId}/return")
-    public String returnCar(@PathVariable Long bookingId) {
+    public Booking returnCar(@PathVariable Long bookingId) {
         Optional<Booking> bookingOpt = bookingService.findById(bookingId);
 
         if (bookingOpt.isEmpty()) {
-            return "Booking not found.";
+           //return "Booking not found.";
         }
 
         Booking booking = bookingOpt.get();
         Car car = booking.getCar();
 
         if (car.isAvailable()) {
-            return "Car is already returned.";
+            //return "Car is already returned.";
         }
 
         car.setAvailable(true);
@@ -77,6 +77,6 @@ public class BookingController {
         bookingService.save(booking);
         //bookingService.deleteById(bookingId);
 
-        return "Car returned successfully.";
+        return booking;
     }
 }

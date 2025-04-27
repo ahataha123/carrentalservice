@@ -33,6 +33,6 @@ public class AuthenticationController {
         }
 
         String token = jwtUtil.generateToken(userOpt.get().getEmail());
-        return new LoginResponse(token);
+        return new LoginResponse(token, userOpt.get().getId());
     }
 }
