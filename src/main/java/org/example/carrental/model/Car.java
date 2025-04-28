@@ -30,6 +30,10 @@ public class Car {
     @Column(nullable = false)
     private boolean available = true;
 
+    private double price;    // 🔥 NEU
+
+    private String currency;
+
     public Car() {
     }
 
@@ -93,4 +97,19 @@ public class Car {
     public void setAvailable(boolean available) {
         this.available = available;
     }
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
 }

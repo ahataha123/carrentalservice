@@ -61,7 +61,7 @@ public class BookingController {
         Optional<Booking> bookingOpt = bookingService.findById(bookingId);
 
         if (bookingOpt.isEmpty()) {
-           //return "Booking not found.";
+            //return "Booking not found.";
         }
 
         Booking booking = bookingOpt.get();
