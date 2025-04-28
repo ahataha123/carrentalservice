@@ -44,12 +44,12 @@ Response Example:
 Add the token to Postman for testing purposes
 3. 🚘 Add a Car
 **POST** http://localhost:8080/v1/cars
-Body (JSON):
+Body (JSON) (for part1 "year", for part2 "manufactureYear":
 {
   "brand": "Toyota",
   "model": "Corolla",
   "licensePlate": "XYZ123",
-  "year": 2020,
+  "manufactureYear": 2020,
   "pricePerDayUsd": 45.0,
   "available": true
 }
